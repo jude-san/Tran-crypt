@@ -21,6 +21,11 @@ route::get('verify', function() {
     return view('forms');
 });
 
+
+route::get('applicationform', function() {
+    return view('application');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
