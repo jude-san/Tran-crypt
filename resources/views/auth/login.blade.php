@@ -15,6 +15,8 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
+            
+
             <!-- Email Address -->
             <div>
                 <x-label for="email" :value="__('Email')" />
@@ -46,6 +48,14 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
+                
+
+                <div class="ml-2">
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                            {{ __('Create new account') }}
+                        </a>
+                    </div>
+
 
                 <x-button class="ml-3">
                     {{ __('Log in') }}

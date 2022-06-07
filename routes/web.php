@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,13 +22,17 @@ route::get('verify', function() {
     return view('forms');
 });
 
+Route::get('/verify/application', 
+    [ApplicationsController::class, 
+    'application']) 
+    ->middleware(['auth','verified'])->name('application');
 
-route::get('applicationform', function() {
-    return view('application');
-});
+// route::get('/verify/application', function() {
+//     return view('application');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth','verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
