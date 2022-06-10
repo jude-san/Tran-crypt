@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApplicationsController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,21 +19,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::get('verify', function() {
+route::get('verify', function () {
     return view('forms');
 });
 
-Route::get('/verify/application', 
-    [ApplicationsController::class, 
-    'application']) 
-    ->middleware(['auth','verified'])->name('application');
+
 
 // route::get('/verify/application', function() {
 //     return view('application');
 // });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth','verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/verify/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/verify/profile/save', [ProfileController::class, 'save'])->name('profile.save');
+
+    Route::middleware(['authchangepassword'])->group(function () {
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->name('dashboard');
+
+        Route::get('/verify/application', [ApplicationsController::class, 'application'])->name('application');
+    });
+});
+require __DIR__ . '/auth.php';
