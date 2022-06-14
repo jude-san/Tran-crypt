@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('address');
             $table->string('Programme');
             $table->string('major');
             $table->string('cellphone');
-            $table->string('application_type');
+            $table->enum('application_type',['graduate', 'undergraduate']);
             $table->string('doa');
             $table->string('doc');
             $table->timestamps();

@@ -23,5 +23,7 @@ class Profile extends Model
         'middle_name',
         'surname',
         'gender',
+
+        //use guarded[] insteaded
     ];
 }
