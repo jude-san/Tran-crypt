@@ -15,15 +15,16 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-
+            $table->bigInteger('user_id')->unsigned();
             $table->string('address');
             $table->string('Programme');
             $table->string('major');
             $table->string('cellphone');
-            $table->enum('application_type',['graduate', 'undergraduate']);
+            $table->enum('application_type', ['graduate', 'undergraduate']);
             $table->string('doa');
             $table->string('doc');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

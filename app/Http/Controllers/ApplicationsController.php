@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreApplicationsRequest;
 use App\Http\Requests\UpdateApplicationsRequest;
 use App\Models\Applications;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApplicationsController extends Controller
 {
@@ -14,11 +17,12 @@ class ApplicationsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function application()
-    {
+    {     
         return view('application');
         //
     }
-
+      
+    
     /**
      * Show the form for creating a new resource.
      *

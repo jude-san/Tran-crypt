@@ -31,7 +31,7 @@ route::get('verify', function () {
 
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', ])->group(function () {
     Route::get('/verify/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/verify/profile/save', [ProfileController::class, 'save'])->name('profile.save');
 

@@ -24,6 +24,6 @@ class Profile extends Model
         'surname',
         'gender',
 
-        //use guarded[] insteaded
+    //use guarded[] insteaded
     ];
 }

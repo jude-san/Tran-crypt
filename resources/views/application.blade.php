@@ -3,9 +3,9 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Application Process  1 of 3') }}
         </h2>
-</x-slot>
-   
-     <div class="py-12">
+    </x-slot>
+
+    <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -14,6 +14,12 @@
                     </h2>
                     <form method="POST" action="{{ route('profile.save') }}" class="pt-5">
                         @csrf
+
+                        <!-- User id -->
+                        <div class="mb-4 mt-5">
+                            <x-input id="userid" class="block mt-1 w-full" type="text" name="userid" value="{{Auth::user()->name}}" required autofocus />
+                        </div>
+                        {{Auth::user()->email}}
 
                         <!-- Name -->
                         <div class="mb-4 mt-5">
