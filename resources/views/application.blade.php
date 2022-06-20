@@ -15,41 +15,75 @@
                     <form method="POST" action="{{ route('profile.save') }}" class="pt-5">
                         @csrf
 
-                        <!-- User id -->
-                        <div class="mb-4 mt-5">
-                            <x-input id="userid" class="block mt-1 w-full" type="text" name="userid" value="{{Auth::user()->name}}" required autofocus />
-                        </div>
-                        {{Auth::user()->email}}
-
-                        <!-- Name -->
-                        <div class="mb-4 mt-5">
-                            <x-label for="firstname" :value="__('First Name')" />
-                            <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus />
-                        </div>
-
-                        <!-- Name -->
+                        <!-- application Type -->
                         <div class="mb-4">
-                            <x-label for="middlename" :value="__('Middle Name')" />
-                            <x-input id="middlename" class="block mt-1 w-full" type="text" name="middlename" :value="old('middlename')" autofocus />
-                        </div>
-                        <!-- Name -->
-                        <div class="mb-4">
-                            <x-label for="surname" :value="__('Surname')" />
-                            <x-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')" required autofocus />
-                        </div>
-                        <!-- Name -->
-                        <div class="mb-4">
-                            <x-label for="index_number" :value="__('Registration / Index Number')" />
-                            <x-input id="index_number" class="block mt-1 w-full" type="text" name="index_number" :value="old('index_number')" required autofocus />
-                        </div>
-                        <!-- Name -->
-                        <div class="mb-4">
-                            <x-label for="gender" :value="__('Gender')" />
-                            <select id="gender" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="gender" :value="old('gender')" required autofocus>
+                            <x-label for="appliction_type" :value="__('Application Type')" />
+                            <select id="application_type" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="application_type" :value="old('application_type')" required autofocus>
                                 <option value=""></option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="graduate">Graduate</option>
+                                <option value="undergraduate">undergraduate</option>
                             </select>
+                        </div>
+
+                        <!-- User name -->
+                        <div class="mb-4 mt-5">
+                            <x-input id="userid" class="block mt-1 w-full" type="text" name="userid" value="{{$profile()->id}}" required autofocus />
+                        </div>
+                        
+                        <!-- Gender -->
+                        <div class="mb-4 mt-5">
+                            <x-input id="gender" class="block mt-1 w-full" type="hidden" name="gender" value="{{Auth::user()->name}}" required autofocus />
+                        </div>
+
+                        <!-- Registration Number -->
+                        <div class="mb-4 mt-5">
+                            <x-input id="regid" class="block mt-1 w-full" type="hidden" name="regid" value="{{Auth::user()->name}}" required autofocus />
+                        </div>
+
+
+                        <!-- Major -->
+                        <div class="mb-4 mt-5">
+                            <x-label for="major" :value="__('Major')" />
+                            <select id="major" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="major" :value="old('major')" required autofocus>
+                                <option value=""></option>
+                                <option value="graduate">Graduate</option>
+                                <option value="undergraduate">Undergraduate</option>
+                            </select>
+                        </div>
+
+                        <!-- Programme -->
+                        <div class="mb-4">
+                            <x-label for="programme" :value="__('Programme')" />
+                            <select id="programme" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="programme" :value="old('programme')" required autofocus>
+                                @foreach ($select as $user)
+                                <option value="{{$user->id}}">{{$user ->name}}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+
+                        <!-- cellphone -->
+                        <div class="mb-4">
+                            <x-label for="cellphone" :value="__('Phone Number')" />
+                            <x-input id="cellphone" class="block mt-1 w-full" type="tel" name="celphone" :value="old('{{$profiles->index_number}}')" required autofocus />
+                        </div>
+
+                        <!-- DOA -->
+                        <div class="mb-4">
+                            <x-label for="doa" :value="__('Date of Acceptance')" />
+                            <x-input id="doa" class="block mt-1 w-full" type="date" name="doa" :value="old('doa')" required autofocus />
+                        </div>
+
+                        <!-- DOC -->
+                        <div class="mb-4">
+                            <x-label for="doc" :value="__('Date of Completion')" />
+                            <x-input id="doc" class="block mt-1 w-full" type="date" name="doc" :value="old('doc')" required autofocus />
+                        </div>
+
+                        <!-- Address -->
+                        <div class="mb-4">
+                            <x-label for="address" :value="__('Delivery Address')" />
+                            <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autofocus />
                         </div>
 
 

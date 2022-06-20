@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('first_name', 20);
             $table->string('middle_name', 20);
             $table->string('surname', 20);
-            $table->enum('gender',['male', 'female']);
+            $table->enum('gender', ['male', 'female']);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
