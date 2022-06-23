@@ -12,14 +12,14 @@
                     <h2 class="font-semibold text-lg text-gray-800 leading-tight mb-5">
                         {{ __('Transcript Application ') }}
                     </h2>
-                    <form method="POST" action="{{ route('profile.save') }}" class="pt-5">
+                    <form method="POST" action="" class="pt-5">
                         @csrf
 
-                        <!-- application Type -->
+                        <!-- applicant Type -->
                         <div class="mb-4">
-                            <x-label for="appliction_type" :value="__('Application Type')" />
+                            <x-label for="applictant_type" :value="__('Application Type')" />
                             <select id="application_type" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="application_type" :value="old('application_type')" required autofocus>
-                                <option value=""></option>
+                                <option value="">---SELECANT TYPE----</option>
                                 <option value="graduate">Graduate</option>
                                 <option value="undergraduate">undergraduate</option>
                             </select>
@@ -27,9 +27,9 @@
 
                         <!-- User name -->
                         <div class="mb-4 mt-5">
-                            <x-input id="userid" class="block mt-1 w-full" type="text" name="userid" value="{{$profile()->id}}" required autofocus />
+                            <x-input id="userid" class="block mt-1 w-full" type="hidden" name="userid" value="{{}}" required autofocus />
                         </div>
-                        
+
                         <!-- Gender -->
                         <div class="mb-4 mt-5">
                             <x-input id="gender" class="block mt-1 w-full" type="hidden" name="gender" value="{{Auth::user()->name}}" required autofocus />
@@ -45,7 +45,7 @@
                         <div class="mb-4 mt-5">
                             <x-label for="major" :value="__('Major')" />
                             <select id="major" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="major" :value="old('major')" required autofocus>
-                                <option value=""></option>
+                                <option value="">---MAJOR TYPE----</option>
                                 <option value="graduate">Graduate</option>
                                 <option value="undergraduate">Undergraduate</option>
                             </select>
@@ -55,9 +55,12 @@
                         <div class="mb-4">
                             <x-label for="programme" :value="__('Programme')" />
                             <select id="programme" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="programme" :value="old('programme')" required autofocus>
-                                @foreach ($select as $user)
-                                <option value="{{$user->id}}">{{$user ->name}}</option>
-                                @endforeach
+                                <option value="">----SELECT PROGRAMME----</option>
+                                <option value="graduate">Graduate</option>
+                                <option value="IT">IT</option>
+                                <option value="Humanities">Humanities</option>
+
+
 
                             </select>
                         </div>
@@ -65,7 +68,7 @@
                         <!-- cellphone -->
                         <div class="mb-4">
                             <x-label for="cellphone" :value="__('Phone Number')" />
-                            <x-input id="cellphone" class="block mt-1 w-full" type="tel" name="celphone" :value="old('{{$profiles->index_number}}')" required autofocus />
+                            <x-input id="cellphone" class="block mt-1 w-full" type="tel" name="celphone" :value="old('cellphone')" required autofocus />
                         </div>
 
                         <!-- DOA -->

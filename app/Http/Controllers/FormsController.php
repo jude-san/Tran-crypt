@@ -2,15 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Http\Requests\UpdateApplicationsRequest;
-use App\Http\Requests\StoreApplicationsRequest;
-use App\Models\Application;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class ApplicationsController extends Controller
+class FormsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,19 +13,9 @@ class ApplicationsController extends Controller
      */
     public function index()
     {
-        //return view('application');
+        //
+        return view('forms');
     }
-
-
-
-
-    public function application()
-    {
-        $select = User::latest();
-        return view('application', ['select' => $select->get()]);
-    }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -46,7 +30,7 @@ class ApplicationsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreApplicationsRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -57,7 +41,7 @@ class ApplicationsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Applications  $applications
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -68,7 +52,7 @@ class ApplicationsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Applications  $applications
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -79,8 +63,8 @@ class ApplicationsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateApplicationsRequest  $request
-     * @param  \App\Models\Applications  $applications
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -91,7 +75,7 @@ class ApplicationsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Applications  $applications
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

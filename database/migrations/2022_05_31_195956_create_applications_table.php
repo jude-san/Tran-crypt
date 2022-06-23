@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->string('address');
-            $table->string('Programme');
+            $table->string('programme');
             $table->string('major');
             $table->string('cellphone');
             $table->enum('application_type', ['graduate', 'undergraduate']);
