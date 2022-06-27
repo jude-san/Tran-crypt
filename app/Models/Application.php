@@ -11,23 +11,7 @@ class Applications extends Model
 
     protected $table = "applications";
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'user_id',
-        'address',
-        'programme',
-        'major',
-        'cellphone',
-        'application_type',
-        'doa',
-        'doc',
-
-    //use guarded[] insteaded
-    ];  
+  
 
 
 }

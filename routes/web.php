@@ -40,6 +40,7 @@ Route::middleware(['auth',])->group(function () {
 
     Route::post('/verify/profile/save', [ProfileController::class, 'save'])->name('profile.save');
 
+
     //Application route for user filling the forms INFO
 
 
@@ -53,7 +54,9 @@ Route::middleware(['auth',])->group(function () {
             return view('payment');
         })->name('payment');
 
-        Route::get('/verify/application', [ApplicationsController::class, 'application'])->name('application');
+        Route::get('/verify/application', [ApplicationsController::class, 'index'])->name('application');
+
+        Route::post('/save/application', [ApplicationsController::class, 'save'])->name('application.save');
     });
 });
 require __DIR__ . '/auth.php';

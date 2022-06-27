@@ -12,64 +12,46 @@
                     <h2 class="font-semibold text-lg text-gray-800 leading-tight mb-5">
                         {{ __('Transcript Application ') }}
                     </h2>
-                    <form method="POST" action="" class="pt-5">
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    <form method="POST" action="{{ route('application.save') }}" class="pt-5">
                         @csrf
 
-                        <!-- applicant Type -->
+                        <!-- Graduate Type -->
                         <div class="mb-4">
-                            <x-label for="applictant_type" :value="__('Application Type')" />
-                            <select id="application_type" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="application_type" :value="old('application_type')" required autofocus>
-                                <option value="">---SELECANT TYPE----</option>
-                                <option value="graduate">Graduate</option>
-                                <option value="undergraduate">undergraduate</option>
-                            </select>
+                            <x-label for="appliction_type" value="{{__('Graduate Type')}}" />
+                            <x-select id="application_type" class="block mt-1 w-full" name="application_type" required autofocus>
+                                <option value="">GRADUATE TYPE</option>
+                                <option value="graduate">Post-Graduate</option>
+                                <option value="undergraduate">Undergraduate</option>
+                            </x-select>
                         </div>
-
-                        <!-- User name -->
-                        <div class="mb-4 mt-5">
-                            <x-input id="userid" class="block mt-1 w-full" type="hidden" name="userid" value="{{}}" required autofocus />
-                        </div>
-
-                        <!-- Gender -->
-                        <div class="mb-4 mt-5">
-                            <x-input id="gender" class="block mt-1 w-full" type="hidden" name="gender" value="{{Auth::user()->name}}" required autofocus />
-                        </div>
-
-                        <!-- Registration Number -->
-                        <div class="mb-4 mt-5">
-                            <x-input id="regid" class="block mt-1 w-full" type="hidden" name="regid" value="{{Auth::user()->name}}" required autofocus />
-                        </div>
-
 
                         <!-- Major -->
                         <div class="mb-4 mt-5">
                             <x-label for="major" :value="__('Major')" />
-                            <select id="major" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="major" :value="old('major')" required autofocus>
-                                <option value="">---MAJOR TYPE----</option>
-                                <option value="graduate">Graduate</option>
-                                <option value="undergraduate">Undergraduate</option>
-                            </select>
+                            <x-input id="major" class="block mt-1 w-full" type="text" name="major" :value="old('major')" required autofocus />
                         </div>
 
                         <!-- Programme -->
                         <div class="mb-4">
                             <x-label for="programme" :value="__('Programme')" />
-                            <select id="programme" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="programme" :value="old('programme')" required autofocus>
-                                <option value="">----SELECT PROGRAMME----</option>
-                                <option value="graduate">Graduate</option>
-                                <option value="IT">IT</option>
-                                <option value="Humanities">Humanities</option>
-
-
-
-                            </select>
+                            <x-input id="programme" class="block mt-1 w-full" type="text" name="programme" :value="old('programme')" required autofocus />
                         </div>
 
-                        <!-- cellphone -->
+                        <!-- Programme -->
                         <div class="mb-4">
-                            <x-label for="cellphone" :value="__('Phone Number')" />
-                            <x-input id="cellphone" class="block mt-1 w-full" type="tel" name="celphone" :value="old('cellphone')" required autofocus />
+                            <x-label for="phone" :value="__('phone')" />
+                            <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus />
                         </div>
+
 
                         <!-- DOA -->
                         <div class="mb-4">
