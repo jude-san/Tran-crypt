@@ -56,7 +56,12 @@ Route::middleware(['auth',])->group(function () {
 
         Route::get('/verify/application', [ApplicationsController::class, 'index'])->name('application');
 
-        Route::post('/save/application', [ApplicationsController::class, 'save'])->name('application.save');
+        Route::post('/verify/application/save', [ApplicationsController::class, 'save'])->name('application.save');
+
+
+        Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
+
+        Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'handleGatewayCallback']);
     });
 });
 require __DIR__ . '/auth.php';

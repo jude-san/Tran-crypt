@@ -24,11 +24,13 @@
                     <form method="POST" action="{{ route('application.save') }}" class="pt-5">
                         @csrf
 
+                        <x-input id="userr_id" class="block mt-1 w-full" type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
+
                         <!-- Graduate Type -->
                         <div class="mb-4">
                             <x-label for="appliction_type" value="{{__('Graduate Type')}}" />
                             <x-select id="application_type" class="block mt-1 w-full" name="application_type" required autofocus>
-                                <option value="">GRADUATE TYPE</option>
+                                <option value=""></option>
                                 <option value="graduate">Post-Graduate</option>
                                 <option value="undergraduate">Undergraduate</option>
                             </x-select>
