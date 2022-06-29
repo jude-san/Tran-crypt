@@ -13,6 +13,7 @@ class Apply extends Model
      *
      * @var array<int, string>
      */
+    //use guarded[] insteaded
     protected $fillable = [
         'user_id',
         'address',
@@ -22,7 +23,10 @@ class Apply extends Model
         'application_type',
         'doa',
         'doc',
-
-        //use guarded[] insteaded
     ];
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
 }

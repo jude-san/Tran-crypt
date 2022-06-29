@@ -17,19 +17,19 @@
                     <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal"
                         role="form">
                         @csrf
-                        <div class="row" style="margin-bottom:40px;">
-                            <div class="col-md-8 col-md-offset-2">
-                                <input type="hidden" name="email" value="{{Auth::user()->email}}">
-                                <input type="hidden" name="amount" value=" {{$setting->price * 100}}">
-                                <input type="hidden" name="quantity" value="1">
-                                <input type="hidden" name="currency" value="GHS">
-                                <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}">
 
-                                <x-button class="ml-3 bg-green-500">
-                                    {{ __('Pay Now') }}
-                                </x-button>
-                            </div>
-                        </div>
+                        <input type="hidden" name="orderID" value="{{session()->get('apply')['id']}}">
+                        <input type="hidden" name="email" value="{{Auth::user()->email}}">
+                        <input type="hidden" name="amount" value=" {{$setting->price * 100}}">
+                        <input type="hidden" name="quantity" value="1">
+                        <input type="hidden" name="currency" value="GHS">
+                        <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}">
+
+                        <x-button class="ml-3 bg-green-500">
+                            {{ __('Pay Now') }}
+                        </x-button>
+
+
                     </form>
 
                 </div>

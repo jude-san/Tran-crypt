@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Models\Payment;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Paystack;
 
@@ -12,8 +14,17 @@ use Paystack;
 class PaymentController extends Controller
 {
 
+    public function verifyForPayment()
+    {
+        if (!session()->get('apply')) {
+            return Redirect::back();
+        }
+    }
+
+
     public function index()
     {
+        $this->verifyForPayment();
         $setting = Setting::find(1);
         return view('payment', compact('setting'));
     }
@@ -38,9 +49,18 @@ class PaymentController extends Controller
     {
         $paymentDetails = Paystack::getPaymentData();
 
-        dd($paymentDetails);
+        if ($paymentDetails['status']) {
+            $payment = new Payment();
+            $payment->apply_id = session()->get('apply')['id'];
+            $payment->total = ($paymentDetails['data']['amount'] / 100);
+            $payment->status = "paid";
+            $payment->save();
+
+            session()->forget('apply');
+
+            return redirect()->route('application');
+        }
         // Now you have the payment details,
-        // you can store the authorization_code in your db to allow for recurrent subscriptions
         // you can then redirect or do whatever you want
     }
 }

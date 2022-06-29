@@ -1,3 +1,21 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest  focus:outline-none  focus:ring disabled:opacity-25 transition ease-in-out duration-150;
+    }
+    .btn-primary {
+        @apply bg-base focus:border-base hover:bg-base active:bg-base ring-base;
+    }
+    .btn-success {
+        @apply bg-green-400 ring-green-300 hover:bg-green-400 active:bg-green-500  focus:border-green-500;
+    }
+    .btn-danger {
+        @apply bg-red-400 ring-red-300 hover:bg-red-400 active:bg-red-500 focus:border-red-500;
+    }
+    .btn-sm {
+        @apply text-[10px] !p-2;
+    }
+}

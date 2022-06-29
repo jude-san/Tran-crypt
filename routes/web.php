@@ -45,21 +45,20 @@ Route::middleware(['auth',])->group(function () {
     //Application route for user filling the forms INFO
 
 
-
     Route::middleware(['authchangepassword'])->group(function () {
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
 
+
+        Route::get('/application', [ApplicationsController::class, 'index'])->name('application');
+        Route::get('/verify/application', [ApplicationsController::class, 'create'])->name('application.create');
+        Route::get('/verify/application/{apply}', [ApplicationsController::class, 'show'])->name('application.show');
+        Route::post('/application/save', [ApplicationsController::class, 'save'])->name('application.save');
+
+
         Route::get('/application/payment', [PaymentController::class, 'index'])->name('payment');
-
-        Route::get('/verify/application', [ApplicationsController::class, 'index'])->name('application');
-
-        Route::post('/verify/application/save', [ApplicationsController::class, 'save'])->name('application.save');
-
-
         Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
-
         Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback']);
     });
 });
