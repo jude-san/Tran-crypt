@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string('index_number', 20)->unique();
             $table->string('first_name', 20);
-            $table->string('middle_name', 20);
+            $table->string('middle_name', 20)->nullable();
             $table->string('surname', 20);
             $table->enum('gender', ['male', 'female']);
             $table->timestamps();

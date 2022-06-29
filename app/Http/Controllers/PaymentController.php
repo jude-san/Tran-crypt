@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Redirect;
 use Paystack;
 
 
 class PaymentController extends Controller
 {
+
+    public function index()
+    {
+        $setting = Setting::find(1);
+        return view('payment', compact('setting'));
+    }
     /**
      * Redirect the User to Paystack Payment Page
      * @return Url

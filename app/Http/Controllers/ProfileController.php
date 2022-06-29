@@ -18,11 +18,10 @@ class ProfileController extends Controller
     {
         $request->validate([
             'firstname' => ['required', 'string', 'max:20'],
-            'middlename' => ['required', 'string', 'max:20'],
+            'middlename' => ['max:20'],
             'surname' => ['required', 'string', 'max:20'],
             'index_number' => ['required', 'string', 'max:20', 'unique:profiles'],
         ]);
-
 
         Profile::create([
             'user_id' => Auth::user()->id,

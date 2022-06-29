@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApplicationsController;
 use App\Http\Controllers\FormsController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,18 +51,16 @@ Route::middleware(['auth',])->group(function () {
             return view('dashboard');
         })->name('dashboard');
 
-        Route::get('/application/payment', function () {
-            return view('payment');
-        })->name('payment');
+        Route::get('/application/payment', [PaymentController::class, 'index'])->name('payment');
 
         Route::get('/verify/application', [ApplicationsController::class, 'index'])->name('application');
 
         Route::post('/verify/application/save', [ApplicationsController::class, 'save'])->name('application.save');
 
 
-        Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
+        Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
 
-        Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'handleGatewayCallback']);
+        Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback']);
     });
 });
 require __DIR__ . '/auth.php';

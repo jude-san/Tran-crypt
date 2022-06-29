@@ -14,34 +14,49 @@
                     <h2 class="font-semibold text-lg text-gray-800 leading-tight mb-5">
                         {{ __('Update your profile') }}
                     </h2>
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <form method="POST" action="{{ route('profile.save') }}" class="pt-5">
                         @csrf
 
                         <!-- Name -->
                         <div class="mb-4 mt-5">
                             <x-label for="firstname" :value="__('First Name')" />
-                            <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus />
+                            <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname"
+                                :value="old('firstname')" required autofocus />
                         </div>
 
                         <!-- Name -->
                         <div class="mb-4">
                             <x-label for="middlename" :value="__('Middle Name')" />
-                            <x-input id="middlename" class="block mt-1 w-full" type="text" name="middlename" :value="old('middlename')" autofocus />
+                            <x-input id="middlename" class="block mt-1 w-full" type="text" name="middlename"
+                                :value="old('middlename')" autofocus />
                         </div>
                         <!-- Name -->
                         <div class="mb-4">
                             <x-label for="surname" :value="__('Surname')" />
-                            <x-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')" required autofocus />
+                            <x-input id="surname" class="block mt-1 w-full" type="text" name="surname"
+                                :value="old('surname')" required autofocus />
                         </div>
                         <!-- Name -->
                         <div class="mb-4">
                             <x-label for="index_number" :value="__('Registration / Index Number')" />
-                            <x-input id="index_number" class="block mt-1 w-full" type="text" name="index_number" :value="old('index_number')" required autofocus />
+                            <x-input id="index_number" class="block mt-1 w-full" type="text" name="index_number"
+                                :value="old('index_number')" required autofocus />
                         </div>
                         <!-- Name -->
                         <div class="mb-4">
                             <x-label for="gender" :value="__('Gender')" />
-                            <select id="gender" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="gender" :value="old('gender')" required autofocus>
+                            <select id="gender"
+                                class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                name="gender" :value="old('gender')" required autofocus>
                                 <option value=""></option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>

@@ -19,7 +19,7 @@ class ApplicationsController extends Controller
     public function save(Request $request)
     {
         $request->validate([
-            'address' => ['required', 'string', 'max:20'],
+            'address' => ['required', 'string',],
             'programme' => ['required', 'string', 'max:50'],
             'major' => ['required', 'string', 'max:30'],
             'phone' => ['required', 'numeric'],
