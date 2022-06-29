@@ -36,7 +36,6 @@ class ApplicationsController extends Controller
 
         $apply = Apply::create([
             'user_id' => Auth::user()->id,
-            'index_number' => $request->index_number,
             'address' => $request->address,
             'programme' => $request->programme,
             'major' => $request->major,
@@ -44,6 +43,7 @@ class ApplicationsController extends Controller
             'application_type' => $request->application_type,
             'doa' => $request->doa,
             'doc' => $request->doc,
+            'index_number' => $request->index_number,
         ]);
 
         session()->put('apply', [

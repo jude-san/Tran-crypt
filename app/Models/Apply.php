@@ -23,6 +23,7 @@ class Apply extends Model
         'application_type',
         'doa',
         'doc',
+        'index_number'
     ];
 
     public function payment()
